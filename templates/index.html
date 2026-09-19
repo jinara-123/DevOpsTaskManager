@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Task Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>DevOps Task Manager</h1>
+
+        <p class="subtitle">Simple Flask Application</p>
+
+        <form action="/add" method="POST" class="task-form">
+            <input
+                type="text"
+                name="task"
+                placeholder="Enter a new task"
+                required
+            >
+
+            <button type="submit">Add Task</button>
+        </form>
+
+        <div class="tasks">
+
+            {% if tasks %}
+
+                {% for task in tasks %}
+
+                    <div class="task">
+                        <span>{{ task }}</span>
+
+                        <form action="/delete/{{ loop.index0 }}" method="POST">
+                            <button type="submit" class="delete">
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p class="empty">No tasks yet. Add your first task!</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+</html>
