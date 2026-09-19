@@ -1,0 +1,6 @@
+services:
+  web:
+    build: .
+    container_name: devops-task-manager-compose
+    ports:
+      - "5000:5000"
